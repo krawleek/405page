@@ -6,7 +6,7 @@ $(document).ready(function(){
   var max_height = $('main').height();
   var max_width = $('main').width();
   var container = document.getElementById('canvas');
-  initCanvas(container, max_width, max_height, '#000');
+  initCanvas(container, max_width, max_height, '#ddd');
 
 });
 
@@ -40,16 +40,49 @@ function initCanvas(container, width, height, fillColor) {
   ctx.clearTo(fillColor || "#ddd");
 
 
+  // Добавление изображения рестарта
+  var canvas_width = $('main').width();
+  var canvas_height = $('main').height();
+  img_left = canvas_width* 100 / 100 - 103;
+  img_top = canvas_height * 85 / 100;
+  base_image = new Image();
+  base_image.src = 'img/restart-black.svg';
+  base_image.onload = function(){
+    ctx.globalCompositeOperation = "source-over";
+    ctx.drawImage(base_image, img_left, img_top, 78, 90);
+  }
+
+
+  // Добавление изображения закрытия
+  var canvas_width = $('main').width();
+  var canvas_height = $('main').height();
+  img_left2 = canvas_width * 93 / 100;
+  img_top2 = canvas_height * 5 / 100;
+  base_image2 = new Image();
+  base_image2.src = 'img/cross-black.svg';
+  base_image2.onload = function(){
+    ctx.globalCompositeOperation = "source-over";
+    ctx.drawImage(base_image2, img_left2, img_top2, 75, 75);
+  }
+
+
+  // Написание текста 404
+  ctx.font = "500px Arial Black";
+  ctx.fillStyle = "black";
+  ctx.textAlign = "center";
+
+  var canvas_width = $('main').width();
+  var canvas_height = $('main').height() + 300;
+  ctx.globalCompositeOperation = "destination-out";
+
+  ctx.fillText("404", canvas_width/2, canvas_height/2);
+
+
   // bind mouse events
   canvas.node.onmousemove = function(e) {
     if (!canvas.isDrawing) {
        return;
     }
-
-    ctx.globalCompositeOperation = "source-over";
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, $('main').width(), $('main').height());
-
     var x = e.pageX - this.offsetLeft;
     var y = e.pageY - this.offsetTop;
     var radius = 100; // or whatever

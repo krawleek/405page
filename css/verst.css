@@ -9,11 +9,12 @@ body {
     height: 100%;
     width: 100%;
     background-color: black;
+    overflow: hidden;
 }
 
 
 h1 {
-    font-family: 'Montserrat', sans-serif;';
+    font-family: 'Montserrat', sans-serif;
     color: white;
     font-style: normal;
     font-weight: bold;
@@ -21,6 +22,7 @@ h1 {
     line-height: 86px;
     position: relative;
     text-align: center;
+
 }
 
 main {
