@@ -90,10 +90,10 @@ function initCanvas(container, width, height, fillColor) {
     ctx.globalCompositeOperation = 'destination-out';
     ctx.fillCircle(x, y, radius, fillColor);
   };
-  canvas.node.onmousedown = function(e) {
+  canvas.node.onmouseover = function(e) {
     canvas.isDrawing = true;
   };
-  canvas.node.onmouseup = function(e) {
+  canvas.node.onmouseout = function(e) {
     canvas.isDrawing = false;
   };
 }
